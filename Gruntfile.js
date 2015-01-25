@@ -66,11 +66,7 @@ module.exports = function(grunt) {
             coffee: {
                 files: ['source/coffee/*.coffee'],
                 tasks: ['coffee'],
-            },
-            ftp: {
-                files: ['dest/**/*'],
-                tasks: ['ftp'],
-            },
+            }
         },
         /*----------------------------------------------------------*/
         connect: {
@@ -111,7 +107,6 @@ module.exports = function(grunt) {
         'concat:js',
         'concat:css',
         'connect',
-        'ftp-deploy',
         'watch',
     ]);
     grunt.registerTask('ftp', ['ftp-deploy']);

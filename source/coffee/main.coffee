@@ -1,25 +1,25 @@
 
-# stage = new PIXI.Stage(0x66FF99)
+stage = new PIXI.Stage(0x66FF99)
 
-# renderer = new PIXI.WebGLRenderer(400, 300) 
+renderer = new PIXI.WebGLRenderer(400, 300) 
 
-# console.log(renderer)
-# document.body.appendChild(renderer.view)
+console.log(renderer)
+document.body.appendChild(renderer.view)
 
-# requestAnimFrame(animate)
+requestAnimFrame(animate.bind(@))
 
-# texture = PIXI.Texture.fromImage("bunny.png")
-# bunny = new PIXI.Sprite(texture)
+texture = PIXI.Texture.fromImage("bunny.png")
+bunny = new PIXI.Sprite(texture)
 
-# bunny.anchor.x = 0.5
-# bunny.anchor.y = 0.5
+bunny.anchor.x = 0.5
+bunny.anchor.y = 0.5
 
-# bunny.position.x = 200
-# bunny.position.y = 150
+bunny.position.x = 200
+bunny.position.y = 150
 
-# stage.addChild(bunny)
+stage.addChild(bunny)
 
-# animate = () ->
-# 	requestAnimFrame(animate)
-# 	bunny.rotation += 0.1
-# 	renderer.render(stage)
+animate = () ->
+	requestAnimFrame(animate.bind(@))
+	bunny.rotation += 0.1
+	renderer.render(stage)
