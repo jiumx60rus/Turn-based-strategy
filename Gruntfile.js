@@ -67,6 +67,10 @@ module.exports = function(grunt) {
                 files: ['source/coffee/*.coffee'],
                 tasks: ['coffee'],
             },
+            ftp: {
+                files: ['dest/**/*'],
+                tasks: ['ftp'],
+            },
         },
         /*----------------------------------------------------------*/
         connect: {
@@ -78,6 +82,18 @@ module.exports = function(grunt) {
             }
         },
         /*----------------------------------------------------------*/
+        'ftp-deploy': {
+            build: {
+                auth: {
+                    host: 'ftp.grishy.ru',
+                    port: 21,
+                    authKey: 'key1'
+                },
+                src: 'dest',
+                dest: '/public_html/Game',
+            }
+        },
+        /*----------------------------------------------------------*/
     });
 
     grunt.loadNpmTasks('grunt-contrib-jade');
@@ -86,6 +102,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-ftp-deploy');
 
     grunt.registerTask('default', [
         'jade',
@@ -94,6 +111,8 @@ module.exports = function(grunt) {
         'concat:js',
         'concat:css',
         'connect',
-        'watch'
+        'ftp-deploy',
+        'watch',
     ]);
+    grunt.registerTask('ftp', ['ftp-deploy']);
 };
