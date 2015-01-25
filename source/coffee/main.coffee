@@ -1,28 +1,25 @@
-# Assignment:
-number   = 42
-opposite = true
 
-# Conditions:
-number = -42 if opposite
+# stage = new PIXI.Stage(0x66FF99)
 
-# Functions:
-square = (x) -> x * x
+# renderer = new PIXI.WebGLRenderer(400, 300) 
 
-# Arrays:
-list = [1, 2, 3, 4, 5]
+# console.log(renderer)
+# document.body.appendChild(renderer.view)
 
-# Objects:
-math =
-  root:   Math.sqrt
-  square: square
-  cube:   (x) -> x * square x
+# requestAnimFrame(animate)
 
-# Splats:
-race = (winner, runners...) ->
-  print winner, runners
+# texture = PIXI.Texture.fromImage("bunny.png")
+# bunny = new PIXI.Sprite(texture)
 
-# Existence:
-alert "I knew it!" if elvis?
+# bunny.anchor.x = 0.5
+# bunny.anchor.y = 0.5
 
-# Array comprehensions:
-cubes = (math.cube num for num in list)
+# bunny.position.x = 200
+# bunny.position.y = 150
+
+# stage.addChild(bunny)
+
+# animate = () ->
+# 	requestAnimFrame(animate)
+# 	bunny.rotation += 0.1
+# 	renderer.render(stage)
