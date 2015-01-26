@@ -23,6 +23,9 @@ module.exports = function(grunt) {
         /*----------------------------------------------------------*/
         coffee: {
             compile: {
+                options: {
+                    join: true
+                },
                 files: {
                     'ready/js/coffee.js': 'source/coffee/*.coffee'
                 }
@@ -45,27 +48,27 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 },
-                files: ['dest/**/*'],
+                files: ['dest/**/*']
             },
             js: {
                 files: ['ready/js/**/*.js'],
-                tasks: ['concat:js'],
+                tasks: ['concat:js']
             },
             css: {
                 files: ['ready/css/**/*.css'],
-                tasks: ['concat:css'],
+                tasks: ['concat:css']
             },
             jade: {
                 files: ['source/jade/**/*.jade'],
-                tasks: ['jade'],
+                tasks: ['jade', 'notify:jade']
             },
             stylus: {
                 files: ['source/stylus/*.styl'],
-                tasks: ['stylus'],
+                tasks: ['stylus', 'notify:stylus']
             },
             coffee: {
                 files: ['source/coffee/*.coffee'],
-                tasks: ['coffee'],
+                tasks: ['coffee', 'notify:coffee']
             }
         },
         /*----------------------------------------------------------*/
@@ -104,6 +107,35 @@ module.exports = function(grunt) {
                     'dest/style.css': 'dest/style.css'
                 }
             }
+        },
+        /*----------------------------------------------------------*/
+        notify: {
+            options: {
+                enabled: true,
+                title: "Game",
+                success: true,
+                duration: 1
+            },
+            jade: {
+                options: {
+                    message: 'Compiling jade'
+                }
+            },
+            stylus: {
+                options: {
+                    message: 'Compiling stylus'
+                }
+            },
+            coffee: {
+                options: {
+                    message: 'Compiling coffee'
+                }
+            },
+            start: {
+                options: {
+                    message: 'Start server'
+                }
+            }
         }
         /*----------------------------------------------------------*/
     });
@@ -114,9 +146,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-ftp-deploy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-ftp-deploy');
+    grunt.loadNpmTasks('grunt-notify');
 
     grunt.registerTask('default', [
         'jade',
@@ -125,6 +158,7 @@ module.exports = function(grunt) {
         'concat:js',
         'concat:css',
         'connect',
+        'notify:start',
         'watch'
     ]);
 

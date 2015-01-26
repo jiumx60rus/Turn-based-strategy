@@ -1,6 +1,8 @@
 (function() {
   var animate, count, renderer, stage, texture, tilingSprite;
 
+  console.log("Test!");
+
   stage = new PIXI.Stage(0x97C56E);
 
   renderer = new PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
@@ -23,8 +25,8 @@
 
   animate = function() {
     count += 0.005;
-    tilingSprite.tileScale.x = 0.5 + Math.sin(count * 0.3);
-    tilingSprite.tileScale.y = 0.5 + Math.cos(count * 0.3);
+    tilingSprite.tileScale.x = 1 + Math.sin(count * 0.2);
+    tilingSprite.tileScale.y = 1 + Math.cos(count * 0.2);
     tilingSprite.tilePosition.x += 1;
     tilingSprite.tilePosition.y += 1;
     renderer.render(stage);

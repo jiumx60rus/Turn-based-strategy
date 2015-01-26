@@ -1,1 +1,1 @@
-console.log "Test.coffee"
+console.log "Test!"

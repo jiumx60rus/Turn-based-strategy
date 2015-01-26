@@ -20,8 +20,8 @@ count = 0
 animate = () ->
 	count += 0.005
 
-	tilingSprite.tileScale.x = 0.5 + Math.sin count * 0.3
-	tilingSprite.tileScale.y = 0.5 + Math.cos count * 0.3
+	tilingSprite.tileScale.x = 1 + Math.sin count * 0.2
+	tilingSprite.tileScale.y = 1 + Math.cos count * 0.2
 
 	tilingSprite.tilePosition.x += 1
 	tilingSprite.tilePosition.y += 1
