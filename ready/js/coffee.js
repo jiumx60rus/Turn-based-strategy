@@ -1,15 +1,16 @@
 (function() {
+  console.log("Test.coffee");
+
+}).call(this);
+
+(function() {
   var animate, bunny, renderer, stage, texture;
 
   stage = new PIXI.Stage(0x66FF99);
 
   renderer = new PIXI.WebGLRenderer(400, 300);
 
-  console.log(renderer);
-
   document.body.appendChild(renderer.view);
-
-  requestAnimFrame(animate.bind(this));
 
   texture = PIXI.Texture.fromImage("bunny.png");
 
@@ -26,9 +27,11 @@
   stage.addChild(bunny);
 
   animate = function() {
-    requestAnimFrame(animate.bind(this));
+    requestAnimFrame(animate);
     bunny.rotation += 0.1;
     return renderer.render(stage);
   };
+
+  requestAnimFrame(animate);
 
 }).call(this);

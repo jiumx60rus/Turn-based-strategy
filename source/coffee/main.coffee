@@ -1,12 +1,8 @@
-
 stage = new PIXI.Stage(0x66FF99)
 
 renderer = new PIXI.WebGLRenderer(400, 300) 
 
-console.log(renderer)
 document.body.appendChild(renderer.view)
-
-requestAnimFrame(animate.bind(@))
 
 texture = PIXI.Texture.fromImage("bunny.png")
 bunny = new PIXI.Sprite(texture)
@@ -20,6 +16,8 @@ bunny.position.y = 150
 stage.addChild(bunny)
 
 animate = () ->
-	requestAnimFrame(animate.bind(@))
+	requestAnimFrame(animate)
 	bunny.rotation += 0.1
 	renderer.render(stage)
+
+requestAnimFrame(animate)
