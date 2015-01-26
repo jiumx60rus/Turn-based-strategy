@@ -1,35 +1,34 @@
 (function() {
-  console.log("Test.coffee");
+  var animate, count, renderer, stage, texture, tilingSprite;
 
-}).call(this);
+  stage = new PIXI.Stage(0x97C56E);
 
-(function() {
-  var animate, bunny, renderer, stage, texture;
+  renderer = new PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
 
-  stage = new PIXI.Stage(0x66FF99);
+  renderer.view.style.position = "absolute";
 
-  renderer = new PIXI.WebGLRenderer(400, 300);
+  renderer.view.style.top = "0px";
+
+  renderer.view.style.left = "0px";
 
   document.body.appendChild(renderer.view);
 
-  texture = PIXI.Texture.fromImage("bunny.png");
+  texture = PIXI.Texture.fromImage("img/bg.jpg");
 
-  bunny = new PIXI.Sprite(texture);
+  tilingSprite = new PIXI.TilingSprite(texture, window.innerWidth, window.innerHeight);
 
-  bunny.anchor.x = 0.5;
+  stage.addChild(tilingSprite);
 
-  bunny.anchor.y = 0.5;
-
-  bunny.position.x = 200;
-
-  bunny.position.y = 150;
-
-  stage.addChild(bunny);
+  count = 0;
 
   animate = function() {
-    requestAnimFrame(animate);
-    bunny.rotation += 0.1;
-    return renderer.render(stage);
+    count += 0.005;
+    tilingSprite.tileScale.x = 0.5 + Math.sin(count * 0.3);
+    tilingSprite.tileScale.y = 0.5 + Math.cos(count * 0.3);
+    tilingSprite.tilePosition.x += 1;
+    tilingSprite.tilePosition.y += 1;
+    renderer.render(stage);
+    return requestAnimFrame(animate);
   };
 
   requestAnimFrame(animate);

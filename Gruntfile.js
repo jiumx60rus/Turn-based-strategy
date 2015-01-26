@@ -90,6 +90,22 @@ module.exports = function(grunt) {
             }
         },
         /*----------------------------------------------------------*/
+        uglify: {
+            js: {
+                files: {
+                    'dest/main.js': 'dest/main.js'
+                }
+            }
+        },
+        /*----------------------------------------------------------*/
+        cssmin: {
+            css: {
+                files: {
+                    'dest/style.css': 'dest/style.css'
+                }
+            }
+        }
+        /*----------------------------------------------------------*/
     });
 
     grunt.loadNpmTasks('grunt-contrib-jade');
@@ -99,6 +115,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-ftp-deploy');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask('default', [
         'jade',
@@ -107,7 +125,12 @@ module.exports = function(grunt) {
         'concat:js',
         'concat:css',
         'connect',
-        'watch',
+        'watch'
     ]);
-    grunt.registerTask('ftp', ['ftp-deploy']);
+
+    grunt.registerTask('ftp', [
+        'uglify',
+        'cssmin',
+        'ftp-deploy'
+    ]);
 };

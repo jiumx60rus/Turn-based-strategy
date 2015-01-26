@@ -1,23 +1,33 @@
-stage = new PIXI.Stage(0x66FF99)
+stage = new PIXI.Stage 0x97C56E
 
-renderer = new PIXI.WebGLRenderer(400, 300) 
+renderer = new  PIXI.autoDetectRenderer window.innerWidth, window.innerHeight
 
-document.body.appendChild(renderer.view)
+renderer.view.style.position = "absolute"
+renderer.view.style.top = "0px"
+renderer.view.style.left = "0px"
 
-texture = PIXI.Texture.fromImage("bunny.png")
-bunny = new PIXI.Sprite(texture)
+document.body.appendChild renderer.view
 
-bunny.anchor.x = 0.5
-bunny.anchor.y = 0.5
+texture = PIXI.Texture.fromImage "img/bg.jpg"
 
-bunny.position.x = 200
-bunny.position.y = 150
+tilingSprite = new PIXI.TilingSprite texture, window.innerWidth, window.innerHeight
 
-stage.addChild(bunny)
+stage.addChild tilingSprite
+
+count = 0
+
 
 animate = () ->
-	requestAnimFrame(animate)
-	bunny.rotation += 0.1
-	renderer.render(stage)
+	count += 0.005
 
-requestAnimFrame(animate)
+	tilingSprite.tileScale.x = 0.5 + Math.sin count * 0.3
+	tilingSprite.tileScale.y = 0.5 + Math.cos count * 0.3
+
+	tilingSprite.tilePosition.x += 1
+	tilingSprite.tilePosition.y += 1
+
+	renderer.render stage
+
+	requestAnimFrame animate
+
+requestAnimFrame animate
