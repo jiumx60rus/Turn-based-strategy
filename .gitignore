@@ -1,4 +1,5 @@
 .ftppass
 node_modules/
 dest/
-ready/js/coffee.js
+ready/js/coffee.*
+ready/css/stylus.css
