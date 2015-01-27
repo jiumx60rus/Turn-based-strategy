@@ -1,6 +1,7 @@
 # Turn-based-strategy
 Пошаговая стратегия на hex'совом поле
 
-Установить node.js и создать файлы для ftp
+## Usage
 
-После grunt
+    $ npm install
+    $ grunt

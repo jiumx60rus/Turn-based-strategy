@@ -1,37 +1,52 @@
 (function() {
-  var create, game, preload, render, sprite, update;
+  var LogoSprite, MainState,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  sprite = 0;
-
-  preload = function() {
-    return game.load.image('phaser', 'img/test.png');
+  window.onload = function() {
+    this.game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO);
+    console.log("Tes");
+    return this.game.state.add('main', new MainState, true);
   };
 
-  create = function() {
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-    sprite = game.add.sprite(game.world.centerX, game.world.centerY, 'phaser');
-    sprite.anchor.set(0.5);
-    return game.physics.arcade.enable(sprite);
-  };
+  MainState = (function(_super) {
+    __extends(MainState, _super);
 
-  update = function() {
-    if (game.physics.arcade.distanceToPointer(sprite, game.input.activePointer) > 8) {
-      game.physics.arcade.moveToPointer(sprite, 300);
-    } else {
-      sprite.body.velocity.set(0);
+    function MainState() {
+      MainState.__super__.constructor.apply(this, arguments);
     }
-    return sprite.angle += 1;
-  };
 
-  render = function() {
-    return game.debug.inputInfo(32, 32);
-  };
+    MainState.prototype.preload = function() {
+      return this.game.load.image('logo', 'img/test.png');
+    };
 
-  game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'phaser-example', {
-    preload: preload,
-    create: create,
-    update: update,
-    render: render
-  });
+    MainState.prototype.create = function() {
+      this.logo = new LogoSprite(this.game, this.game.world.centerX, this.game.world.centerY, 'logo');
+      this.game.world.add(this.logo);
+      if (this.game.scaleToFit) {
+        this.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
+        this.game.stage.scale.setShowAll();
+        return this.game.stage.scale.refresh();
+      }
+    };
+
+    return MainState;
+
+  })(Phaser.State);
+
+  LogoSprite = (function(_super) {
+    __extends(LogoSprite, _super);
+
+    function LogoSprite() {
+      LogoSprite.__super__.constructor.apply(this, arguments);
+      this.anchor = {
+        x: 0.5,
+        y: 0.5
+      };
+    }
+
+    return LogoSprite;
+
+  })(Phaser.Sprite);
 
 }).call(this);

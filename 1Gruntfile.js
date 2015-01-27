@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                     join: true
                 },
                 files: {
-                    'ready/js/coffee.js': 'source/coffee/*.coffee'
+                    'ready/js/coffee.js': 'source/coffee/**/*.coffee'
                 }
             }
         },
