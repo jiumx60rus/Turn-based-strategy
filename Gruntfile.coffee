@@ -34,9 +34,9 @@ module.exports = (grunt) ->
 				dest: 'dest/style.css'
 			coffee:
 				src: [
+					'source/coffee/states/*.coffee'
+					# 'source/coffee/sprites/*.coffee'
 					'source/coffee/main.coffee'
-					'source/coffee/rooms/*.coffee'
-					'source/coffee/sprites/*.coffee'
 				]
 				dest: 'ready/js/coffee.coffee'
 
