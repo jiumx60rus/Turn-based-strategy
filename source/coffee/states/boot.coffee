@@ -1,8 +1,8 @@
 class Boot
-	preload: () ->
-		@load.image 'preloader', 'img/preloader.gif'
+  preload: () ->
+    @load.image 'preloader', 'img/preloader.gif'
 
-	create: () ->
+  create: () ->
 
-		@game.input.maxPointers = 1
-		@game.state.start 'preload'
+    @game.input.maxPointers = 1
+    @game.state.start 'preload'
