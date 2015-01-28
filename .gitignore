@@ -1,6 +1,6 @@
 .ftppass
 node_modules/
-dest/
-!dest/img
+/dest/
+!/dest/img/
 ready/js/coffee.*
 ready/css/stylus.css
