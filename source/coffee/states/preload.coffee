@@ -1,19 +1,18 @@
 class Preload
-  onLoadComplete: () ->
-    @ready = on
 
   preload: () ->
-    @asset = @add.sprite @width/2, @height/2, 'preloader'
-    @asset.anchor.setTo 0.5, 0.5
-
-    @load.onLoadComplete.addOnce @onLoadComplete, @
-    @load.setPreloadSprite @asset
-    @load.image 'yeoman', 'img/yeoman-logo.png'
+    # asset = @load.spritesheet "preloader", "img/preloader.png", 120, 128, 29
     
 
-  create: () ->
-    @asset.cropEnabled = off
+  create: () -> 
+    # Запуск прелоадера
+    preloader = @game.add.sprite @camera.view.width / 2, @camera.view.height / 2, "preloader"
+    preloader.anchor.setTo 0.5, 0.5
+    preloader.animations.add "load"
+    preloader.animations.play "load", 24, true
+
+    # Дальше загрузка файлов для меню :)
 
   update: () ->
-    if !!@ready
-      @game.state.start 'menu'
+    # if !!@ready
+    #   @game.state.start 'menu'
