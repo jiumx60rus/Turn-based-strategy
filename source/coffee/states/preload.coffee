@@ -1,23 +1,19 @@
 class Preload
 
-  preload: () ->
-    # asset = @load.spritesheet "preloader", "img/preloader.png", 120, 128, 29
-    
+  loadComplete: ->
+    @game.state.start "menu"
 
-  create: () ->
-
+  create: ->
     # Запуск прелоадера
     preloader = @game.add.sprite @camera.view.width / 2, @camera.view.height / 2, "preloader"
-    preloader.anchor.setTo 0.5, 0.5
+    preloader.anchor.setTo 0.5
     preloader.animations.add "load"
     preloader.animations.play "load", 24, true
 
     # Дальше загрузка файлов для меню :)
-    loader = new Phaser.Loader(@game)
-    loader.image "menuBg", "img/menu/bg.jpg"
-    loader.onLoadComplete.addOnce(-> console.log "Test")
-    loader.start()
+    @load.onLoadComplete.add @loadComplete, this
 
-  update: () ->
-    # if !!@ready
-    #   @game.state.start 'menu'
+    @load.image "menuBg", "img/menu/bg.jpg"
+    @load.spritesheet "menuButtonStart", "img/menu/buttonStart.png", 401, 143
+    # Начало загрузки
+    do @load.start

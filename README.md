@@ -1,7 +1,13 @@
-# Turn-based-strategy
-Пошаговая стратегия на hex'совом поле
+# Пошаговая стратегия на hex'совом поле
 
-## Usage
+## Сделанна с использованием:
+ - Jade
+ - Stylus
+ - Coffeescript
+ - Phaser.js
 
-    $ npm install
-    $ grunt
+
+## Запустить
+```sh
+  $ npm install
+  $ grunt

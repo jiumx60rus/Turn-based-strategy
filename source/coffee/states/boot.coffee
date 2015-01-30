@@ -1,8 +1,9 @@
 class Boot
   preload: () ->
-    @load.image 'preloader', 'img/preloader.gif'
+    # Загрузка прелоадера
+    @load.spritesheet "preloader", "img/preloader.png", 120, 128, 29
 
   create: () ->
-
-    @game.input.maxPointers = 1
-    @game.state.start 'preload'
+    # Очистка консоли
+    # do console.clear if console?
+    @game.state.start "preload"
