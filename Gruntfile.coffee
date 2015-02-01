@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
   js = [
+    "source/coffee/prefabs/*.coffee"
     "source/coffee/states/*.coffee"
-    # "source/coffee/sprites/*.coffee"
     "source/coffee/main.coffee"
   ]
 
@@ -38,11 +38,7 @@ module.exports = (grunt) ->
         src: "ready/css/**/*.css"
         dest: "dest/style.css"
       coffee:
-        src: [
-          "source/coffee/states/*.coffee"
-          # "source/coffee/sprites/*.coffee"
-          "source/coffee/main.coffee"
-        ]
+        src: js
         dest: "ready/js/coffee.coffee"
 
     # connect
