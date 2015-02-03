@@ -3,18 +3,21 @@ class Play
     # Фон
     bg = @add.tileSprite 0, 0, @camera.view.width, @camera.view.height, "gameBg"
 
-    @map  = new HexMap this, @game.camera.width / 35
+    @hexGrid  = new HexGrid this, @game.camera.width / 20
     # Создать сетку на весь экран
-    @x = Math.floor @game.camera.width / @map.side
-    @y = Math.floor @game.camera.height / @map.height
-    @map.createGrid @x, @y
+    @x = Math.floor @game.camera.width / @hexGrid.side
+    @y = Math.floor @game.camera.height / @hexGrid.height
+    @hexGrid.createGrid @x, @y
     # Отрисовать карту
-    do @map.drawGrid
+    do @hexGrid.drawGrid
 
   update: ->
-    color = [0x808000, 0x008080, 0xFF00FF, 0xFFFAF0, 0xF0E68C, 0x8B4513]
     # Test
-    hex = @map.map[~~(do Math.random * @x)][~~(do Math.random * @y)]
-    hex.fillColor = color[Math.round(do Math.random * color.length)]
+    setHex = @hexGrid.setHexOnPoint @game.input.activePointer.position.x,
+      @game.input.activePointer.position.y
 
-    do @map.drawGrid
+    if 0 <= setHex.x < @hexGrid.grid.length and 0 <= setHex.y < @hexGrid.grid[setHex.y].length
+      hex = @hexGrid.grid[setHex.x][setHex.y]
+      hex.fillColor = 0xFF6347
+
+      do @hexGrid.drawGrid

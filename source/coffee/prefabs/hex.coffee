@@ -11,9 +11,9 @@ class Hex
   
   drawHex: ->
     # Цвет заливки и прозрачность
-    @grid.graphics.beginFill @fillColor, .3
+    @grid.graphics.beginFill @fillColor, .6
     # Толщина, цвет обводки, прозрачность
-    @grid.graphics.lineStyle 2, @lineColor, .5
+    @grid.graphics.lineStyle 2, @lineColor, .6
 
     @grid.graphics.moveTo @xPixel + @grid.width - @grid.side, @yPixel
     @grid.graphics.lineTo @xPixel + @grid.side, @yPixel
