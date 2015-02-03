@@ -10,14 +10,19 @@ class Play
     @hexGrid.createGrid @x, @y
     # Отрисовать карту
     do @hexGrid.drawGrid
+  
+    @xOld = -1
+    @yOld = -1
 
   update: ->
     # Test
+    
     setHex = @hexGrid.selectHexOnPoint @game.input.activePointer.position.x,
       @game.input.activePointer.position.y
 
-    if 0 <= setHex.x < @hexGrid.grid.length and 0 <= setHex.y < @hexGrid.grid[setHex.y].length
-      hex = @hexGrid.grid[setHex.x][setHex.y]
-      hex.fillColor = 0xFF6347
-
-      do @hexGrid.drawGrid
+    if @xOld != setHex.x or @yOld != setHex.y
+      if 0 <= setHex.x < @hexGrid.grid.length and 0 <= setHex.y < @hexGrid.grid[setHex.y].length
+        @hexGrid.drawActiveHex setHex.x, setHex.y
+    
+    @xOld = setHex.x
+    @yOld = setHex.y
