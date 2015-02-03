@@ -16,6 +16,6 @@ class Preload
     @load.image "menuBg", "img/menu/bg.jpg"
     @load.spritesheet "menuButtonStart", "img/menu/buttonStart.png", 401, 143
 
-    @load.image "gameBg", "img/grass.jpg"
+    @load.image "gameBg", "img/bg.jpg"
     # Начало загрузки
     do @load.start

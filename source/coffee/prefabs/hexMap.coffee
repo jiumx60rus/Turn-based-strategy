@@ -3,36 +3,27 @@ class HexMap
     @height = Math.sqrt(3) * @radius;
     @width = 2 * @radius;
     @side = (3 / 2) * @radius;
+    @map = []
 
-    @HexMapTexture = @game.add.renderTexture @game.camera.view.width, 
+    # Текстура куда рисуется сетка
+    @hexMapTexture = @game.add.renderTexture @game.camera.view.width, 
       @game.camera.view.height, "HexMap"
     
     @graphics = @game.add.graphics 0, 0
 
-  drawHex: (x, y, fillColor)->
-    @graphics.beginFill("#bed0db", .5);
-    @graphics.lineStyle(2, "#000000", 10);
+  createGrid: (_x, _y)->
+    for x in [0..._x]
+      @map[x] = []
+      for y in [0..._y]
+        @map[x][y] = new Hex this, x, y
 
-    @graphics.moveTo(x + @width - @side, y);
-    @graphics.lineTo(x + @side, y);
-    @graphics.lineTo(x + @width, y + (@height / 2));
-    @graphics.lineTo(x + @side, y + @height);
-    @graphics.lineTo(x + @width - @side, y + @height);
-    @graphics.lineTo(x, y + (@height / 2));
-    @graphics.endFill();
+  drawGrid: ->
+    for xx, x in @map
+      for yy, y in @map[x]
+        # Test
+        if do Math.random >= 0.5
+          @map[x][y].fillColor = 0xF4A460
+        do @map[x][y].drawHex
 
-  drawnGrid: (rows, cols)->
-    
-    currentHexX = null
-    currentHexY = null
-
-    for col in [0...cols]
-      for row in [0...rows]
-        currentHexX = col * @side
-        currentHexY = row * @height
-        currentHexY += (@height * 0.5) if col % 2 != 0
-
-        @drawHex currentHexX, currentHexY
-    
-    @HexMapTexture.render(@graphics, @game.input.activePointer.position, false)
+    @hexMapTexture.render(@graphics, @game.input.activePointer.position, false)
 
