@@ -13,7 +13,7 @@ class Play
 
   update: ->
     # Test
-    setHex = @hexGrid.setHexOnPoint @game.input.activePointer.position.x,
+    setHex = @hexGrid.selectHexOnPoint @game.input.activePointer.position.x,
       @game.input.activePointer.position.y
 
     if 0 <= setHex.x < @hexGrid.grid.length and 0 <= setHex.y < @hexGrid.grid[setHex.y].length

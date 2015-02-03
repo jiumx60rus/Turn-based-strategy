@@ -27,7 +27,7 @@ class HexGrid
     # Рендрим в текстуру в нулевых координатах
     @hexgridTexture.render @graphics, 0, 0
 
-  setHexOnPoint: (x, y) ->
+  selectHexOnPoint: (x, y) ->
     ci = Math.floor x / @side
     cx = x - @side * ci
 
