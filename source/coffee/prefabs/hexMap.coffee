@@ -18,12 +18,12 @@ class HexMap
         @map[x][y] = new Hex this, x, y
 
   drawGrid: ->
+    # Чистим "графику"
+    do @graphics.clear
+    # И отрисовываем в неё
     for xx, x in @map
       for yy, y in @map[x]
-        # Test
-        if do Math.random >= 0.5
-          @map[x][y].fillColor = 0xF4A460
         do @map[x][y].drawHex
-
-    @hexMapTexture.render(@graphics, @game.input.activePointer.position, false)
+    # Рендрим в текстуру в нулевых координатах
+    @hexMapTexture.render @graphics, 0, 0
 
